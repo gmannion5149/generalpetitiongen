@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0045)file:///C:/Users/gerar/Downloads/index_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plea Petition Generator</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="./Plea Petition Generator.htmlSonnet_files/css2" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -237,18 +237,22 @@ textarea{resize:vertical;line-height:1.55}
   <div class="card">
     <div class="sec-hdr">Auto-fill from complaint / citation</div>
     <div class="row" style="align-items:center">
-      <input type="file" id="pdf-up" accept="application/pdf" onchange="onPdfSelected()" style="flex:1;min-width:200px;padding:8px;border:1px dashed var(--border);border-radius:8px;background:var(--bg);font-size:13px" />
+      <input type="file" id="pdf-up" accept="application/pdf" onchange="onPdfSelected()" style="flex:1;min-width:200px;padding:8px;border:1px dashed var(--border);border-radius:8px;background:var(--bg);font-size:13px">
     </div>
     <div class="row" style="margin-top:8px">
       <div class="f1">
         <label>Pleading to (optional — syncs with count list below)</label>
-        <select id="ai-plea-sel" onchange="onPleaChoice()" style="width:auto;min-width:180px;max-width:260px"></select>
-        <div id="ai-multi-wrap" style="display:none;margin-top:6px;padding:8px;border:1px solid var(--border);border-radius:8px;background:var(--bg)"></div>
+        <select id="ai-plea-sel" onchange="onPleaChoice()" style="width:auto;min-width:180px;max-width:260px"><option value="">— Select —</option><option value="c1">Count 1</option><option value="amended">Amended Count</option></select>
+        <div id="ai-multi-wrap" style="display:none;margin-top:6px;padding:8px;border:1px solid var(--border);border-radius:8px;background:var(--bg)"><label style="display:flex;align-items:center;gap:6px;font-size:13px;margin:3px 0;cursor:pointer">
+      <input type="checkbox" class="ai-multi-cb" value="c1" onchange="applyPleaSelection()"> Count 1
+    </label><label style="display:flex;align-items:center;gap:6px;font-size:13px;margin:3px 0;cursor:pointer">
+    <input type="checkbox" class="ai-multi-cb" value="amended" onchange="applyPleaSelection()"> Amended Count
+  </label></div>
         <div id="ai-amend-wrap" style="display:none;margin-top:6px">
-          <input id="ai-amend" oninput="applyPleaSelection()" placeholder='Type the count and statute — e.g. "Count 3 amended to Careless Driving, 169.13 subd. 2(a)"' />
+          <input id="ai-amend" oninput="applyPleaSelection()" placeholder="Type the count and statute — e.g. &quot;Count 3 amended to Careless Driving, 169.13 subd. 2(a)&quot;">
         </div>
         <label id="ai-enh-wrap" style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;margin-top:8px">
-          <input type="checkbox" id="ai-enh" onchange="S.enhanceOn=this.checked;renderTF()" />
+          <input type="checkbox" id="ai-enh" onchange="S.enhanceOn=this.checked;renderTF()">
           Enhanceable Offense
         </label>
       </div>
@@ -256,7 +260,7 @@ textarea{resize:vertical;line-height:1.55}
     <div class="row">
       <div class="f1">
         <label>The deal (optional — shorthand is fine)</label>
-        <textarea id="ai-deal" rows="2" placeholder='e.g. "plead ct 2, dismiss rest, SOI 1yr Dakota Comm Corr, $600 + fees, CUA + follow recs, VIP, no same/similar, law abiding"'></textarea>
+        <textarea id="ai-deal" rows="2" placeholder="e.g. &quot;plead ct 2, dismiss rest, SOI 1yr Dakota Comm Corr, $600 + fees, CUA + follow recs, VIP, no same/similar, law abiding&quot;"></textarea>
       </div>
     </div>
     <div class="row" style="margin-top:4px">
@@ -264,10 +268,10 @@ textarea{resize:vertical;line-height:1.55}
     </div>
     <div id="ai-status" style="margin-top:6px;font-size:13px;color:var(--muted)"></div>
     <div style="margin-top:8px">
-      <a href="#" onclick="event.preventDefault();const w=$('key-wrap');w.style.display=w.style.display==='none'?'block':'none'" style="font-size:12px;color:var(--muted)">⚙ API key settings</a>
+      <a href="file:///C:/Users/gerar/Downloads/index_1.html#" onclick="event.preventDefault();const w=$(&#39;key-wrap&#39;);w.style.display=w.style.display===&#39;none&#39;?&#39;block&#39;:&#39;none&#39;" style="font-size:12px;color:var(--muted)">⚙ API key settings</a>
       <div id="key-wrap" style="display:none;margin-top:6px">
         <div class="row" style="align-items:center">
-          <input type="password" id="ai-key" placeholder="sk-ant-..." style="flex:1;font-size:13px" oninput="saveApiKey(this.value)" />
+          <input type="password" id="ai-key" placeholder="sk-ant-..." style="flex:1;font-size:13px" oninput="saveApiKey(this.value)">
         </div>
         <div style="font-size:11px;color:var(--muted);margin-top:4px">Required when running this file outside claude.ai. Get a key at console.anthropic.com → API Keys. Stored only in this browser.</div>
       </div>
@@ -280,51 +284,55 @@ textarea{resize:vertical;line-height:1.55}
     <div class="row">
       <div class="f2">
         <label>Attorney name</label>
-        <input id="g-aname" oninput="S.attyName=this.value" placeholder="Full name, e.g. Jane M. Smith" />
+        <input id="g-aname" oninput="S.attyName=this.value" placeholder="Full name, e.g. Jane M. Smith">
       </div>
       <div class="f1">
         <label>License number (optional)</label>
-        <input id="g-alic" oninput="S.attyLic=this.value" placeholder="0123456" />
+        <input id="g-alic" oninput="S.attyLic=this.value" placeholder="0123456">
       </div>
     </div>
     <div class="row">
       <div class="f1">
-        <label>Firm & address (optional — one line per row)</label>
-        <textarea id="g-afirm" rows="3" oninput="S.attyFirm=this.value" placeholder="Smith Law, P.A.&#10;123 Main Street, Suite 100&#10;Minneapolis, MN 55401&#10;(612) 555-0100 Phone&#10;jane@smithlaw.com"></textarea>
+        <label>Firm &amp; address (optional — one line per row)</label>
+        <textarea id="g-afirm" rows="3" oninput="S.attyFirm=this.value" placeholder="Smith Law, P.A.
+123 Main Street, Suite 100
+Minneapolis, MN 55401
+(612) 555-0100 Phone
+jane@smithlaw.com"></textarea>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="sec-hdr">Court & case information</div>
+    <div class="sec-hdr">Court &amp; case information</div>
     <div class="row">
       <div class="f1">
         <label>County</label>
-        <select id="s-county" onchange="onCounty()"><option value="">Select county...</option></select>
+        <select id="s-county" onchange="onCounty()"><option value="">Select county...</option><option value="Aitkin">Aitkin</option><option value="Anoka">Anoka</option><option value="Becker">Becker</option><option value="Beltrami">Beltrami</option><option value="Benton">Benton</option><option value="Big Stone">Big Stone</option><option value="Blue Earth">Blue Earth</option><option value="Brown">Brown</option><option value="Carlton">Carlton</option><option value="Carver">Carver</option><option value="Cass">Cass</option><option value="Chippewa">Chippewa</option><option value="Chisago">Chisago</option><option value="Clay">Clay</option><option value="Clearwater">Clearwater</option><option value="Cook">Cook</option><option value="Cottonwood">Cottonwood</option><option value="Crow Wing">Crow Wing</option><option value="Dakota">Dakota</option><option value="Dodge">Dodge</option><option value="Douglas">Douglas</option><option value="Faribault">Faribault</option><option value="Fillmore">Fillmore</option><option value="Freeborn">Freeborn</option><option value="Goodhue">Goodhue</option><option value="Grant">Grant</option><option value="Hennepin">Hennepin</option><option value="Houston">Houston</option><option value="Hubbard">Hubbard</option><option value="Isanti">Isanti</option><option value="Itasca">Itasca</option><option value="Jackson">Jackson</option><option value="Kanabec">Kanabec</option><option value="Kandiyohi">Kandiyohi</option><option value="Kittson">Kittson</option><option value="Koochiching">Koochiching</option><option value="Lac qui Parle">Lac qui Parle</option><option value="Lake">Lake</option><option value="Lake of the Woods">Lake of the Woods</option><option value="Le Sueur">Le Sueur</option><option value="Lincoln">Lincoln</option><option value="Lyon">Lyon</option><option value="Mahnomen">Mahnomen</option><option value="Marshall">Marshall</option><option value="Martin">Martin</option><option value="McLeod">McLeod</option><option value="Meeker">Meeker</option><option value="Mille Lacs">Mille Lacs</option><option value="Morrison">Morrison</option><option value="Mower">Mower</option><option value="Murray">Murray</option><option value="Nicollet">Nicollet</option><option value="Nobles">Nobles</option><option value="Norman">Norman</option><option value="Olmsted">Olmsted</option><option value="Otter Tail">Otter Tail</option><option value="Pennington">Pennington</option><option value="Pine">Pine</option><option value="Pipestone">Pipestone</option><option value="Polk">Polk</option><option value="Pope">Pope</option><option value="Ramsey">Ramsey</option><option value="Red Lake">Red Lake</option><option value="Redwood">Redwood</option><option value="Renville">Renville</option><option value="Rice">Rice</option><option value="Rock">Rock</option><option value="Roseau">Roseau</option><option value="Scott">Scott</option><option value="Sherburne">Sherburne</option><option value="Sibley">Sibley</option><option value="St. Louis">St. Louis</option><option value="Stearns">Stearns</option><option value="Steele">Steele</option><option value="Stevens">Stevens</option><option value="Swift">Swift</option><option value="Todd">Todd</option><option value="Traverse">Traverse</option><option value="Wabasha">Wabasha</option><option value="Wadena">Wadena</option><option value="Waseca">Waseca</option><option value="Washington">Washington</option><option value="Watonwan">Watonwan</option><option value="Wilkin">Wilkin</option><option value="Winona">Winona</option><option value="Wright">Wright</option><option value="Yellow Medicine">Yellow Medicine</option></select>
       </div>
       <div class="f1">
         <label>Judicial district</label>
-        <input id="s-district" readonly placeholder="Auto-populated from county" />
+        <input id="s-district" readonly="" placeholder="Auto-populated from county">
       </div>
     </div>
     <div class="row">
       <div class="f2">
         <label>Client name</label>
-        <input id="s-name" oninput="S.clientName=this.value" placeholder="Full legal name" />
+        <input id="s-name" oninput="S.clientName=this.value" placeholder="Full legal name">
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--muted);margin-top:5px">
-          <input type="checkbox" id="s-addl" onchange="S.showAddlClient=this.checked;$('addl-client-wrap').style.display=this.checked?'block':'none'" />
+          <input type="checkbox" id="s-addl" onchange="S.showAddlClient=this.checked;$(&#39;addl-client-wrap&#39;).style.display=this.checked?&#39;block&#39;:&#39;none&#39;">
           Additional client information
         </label>
       </div>
       <div class="f1" id="dob-wrap">
         <label>Date of birth</label>
-        <input type="date" id="s-dob" oninput="S.clientDob=this.value" />
+        <input type="date" id="s-dob" oninput="S.clientDob=this.value">
       </div>
       <div class="f1">
         <label id="lbl-cn">Case number</label>
-        <input id="s-caseno" oninput="onCaseNoInput(this)" placeholder="27-CR-25-000000" />
+        <input id="s-caseno" oninput="onCaseNoInput(this)" placeholder="27-CR-25-000000">
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;color:var(--muted);margin-top:5px">
-          <input type="checkbox" id="s-cn4" onchange="S.caseNo4=this.checked;reformatCaseNo()" />
+          <input type="checkbox" id="s-cn4" onchange="S.caseNo4=this.checked;reformatCaseNo()">
           add court letters
         </label>
       </div>
@@ -333,30 +341,150 @@ textarea{resize:vertical;line-height:1.55}
       <div class="row">
         <div class="f2">
           <label>Street address</label>
-          <input id="s-cstreet" oninput="S.clientStreet=this.value" placeholder="123 Main St" />
+          <input id="s-cstreet" oninput="S.clientStreet=this.value" placeholder="123 Main St">
         </div>
       </div>
       <div class="row">
         <div class="f2">
           <label>City, State, Zip</label>
-          <input id="s-ccsz" oninput="S.clientCityStateZip=this.value" placeholder="Minneapolis, MN 55401" />
+          <input id="s-ccsz" oninput="S.clientCityStateZip=this.value" placeholder="Minneapolis, MN 55401">
         </div>
       </div>
       <div class="row">
         <div class="f1">
           <label>Client phone</label>
-          <input id="s-cphone" oninput="onPhoneInput(this)" placeholder="(612) 555-1234" />
+          <input id="s-cphone" oninput="onPhoneInput(this)" placeholder="(612) 555-1234">
         </div>
         <div class="f1">
           <label>Client email</label>
-          <input id="s-cemail" oninput="S.clientEmail=this.value" placeholder="client@example.com" />
+          <input id="s-cemail" oninput="S.clientEmail=this.value" placeholder="client@example.com">
         </div>
       </div>
     </div>
   </div>
 
   <!-- Type-specific fields rendered here -->
-  <div id="tf"></div>
+  <div id="tf">
+  <div class="card">
+    <div class="sec-hdr">Charges filed</div>
+    <div id="chg-sec"><div class="row" style="margin-bottom:12px;align-items:flex-end">
+    <div style="flex:0 0 auto">
+      <label>Number of counts</label>
+      <select onchange="setCountNum(+this.value)" style="width:auto;min-width:80px">
+        <option selected="">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+      </select>
+    </div>
+  </div>
+<div class="chg-card" id="cc-1">
+  <div class="chg-hdr">
+    <span class="chg-lbl">Count 1</span>
+  </div>
+
+  <div class="row" style="margin-bottom:4px">
+    <div class="f2">
+      <label>Charge</label>
+      <select onchange="setChgType(1,this.value)">
+        <option value="">— Select charge —</option>
+        <optgroup label="Alcohol">
+          <option value=".08">.08 or More</option>
+          <option value="UI">Under the Influence</option>
+          <option value="R">Refusal</option>
+        </optgroup>
+        <optgroup label="Controlled Substances">
+          <option value="cs-imp">Controlled Substance (Impaired)</option>
+          <option value="intox">Intoxicating Substance</option>
+          <option value="cs-cont">Controlled Substance (Contains)</option>
+          <option value="cannabis">Cannabis</option>
+        </optgroup>
+        <optgroup label="Other">
+          <option value="ref">Reference Statute</option>
+          <option value="careless">Careless Driving</option>
+          <option value="other">Other</option>
+        </optgroup>
+      </select>
+    </div>
+    
+    <div class="f1">
+      <label>With reference to</label>
+      <select onchange="setRefDeg(1,this.value)">
+        <option value="">— None —</option>
+        <option value="4th">4th Degree</option>
+        <option value="3rd">3rd Degree</option>
+        <option value="2nd">2nd Degree</option>
+        <option value="1st">1st Degree</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="margin-bottom:8px">
+    <label>Description</label>
+    <textarea rows="2" oninput="updChg(1,&#39;desc&#39;,this.value)" placeholder="Auto-filled from charge selection above"></textarea>
+  </div>
+  <div class="row" style="margin-bottom:4px">
+    <div class="f1">
+      <label>Charge statute</label>
+      <input value="" oninput="updChg(1,&#39;statute&#39;,this.value)" placeholder="auto-filled">
+    </div>
+    
+    <div class="f1">
+      <label>Reference statute</label>
+      <input value="" oninput="updChg(1,&#39;ref&#39;,this.value)" placeholder="e.g., 169A.27 subd. 2">
+    </div>
+  </div>
+</div></div>
+  </div>
+
+  <div class="card">
+    <div class="sec-hdr">Plea — count(s) pleading guilty to</div>
+    <div id="plea-sec"><div style="margin-bottom:12px;padding:10px;border-radius:8px;background:#f9fafb;border:1.5px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:12px;font-weight:500;color:var(--muted)">Careless Driving amendment:</span><button class="qbtn" onclick="clickCareless()">Careless Driving</button></div></div><div class="plea-row plea-off" onclick="togPlea(&#39;1&#39;)">
+      <input type="checkbox" class="plea-cb" onclick="event.stopPropagation();togPlea(&#39;1&#39;)">
+      <span class="plea-txt">
+        <strong>Count 1:</strong> (no description entered)<span style="color:var(--muted)"></span>
+      </span>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <div class="sec-hdr">Offense details &amp; factual basis</div>
+    <div class="row">
+      <div class="f1"><label>Date of offense</label><input type="date" id="f-od" value="" oninput="S.offDate=this.value"></div>
+      <div class="f1"><label>City of offense</label><input id="f-oc" value="" oninput="S.offCity=this.value" placeholder="Robbinsdale"></div>
+      <div class="f1"><label>County of offense</label><input id="f-oco" value="" oninput="S.offCounty=this.value" placeholder="Hennepin"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <label style="margin:0">Facts / factual basis</label>
+      <button class="btn btn-sm" onclick="autoFacts()">Auto-fill standard DWI facts</button>
+    </div>
+    <textarea id="f-facts" rows="5" oninput="S.facts=this.value" placeholder="Click Auto-fill or enter the factual basis for the plea."></textarea>
+  </div>
+
+  <div class="card">
+    <div class="sec-hdr">Charge level &amp; maximum penalties</div>
+    <div class="row">
+      <div class="f1"><label>Charge level</label>
+        <select onchange="changeLevel(this.value)">
+          <option selected="">Misdemeanor</option><option>Gross Misdemeanor</option><option>Felony</option>
+        </select>
+      </div>
+      <div class="f1"><label>Maximum fine</label><input id="f-fine" value="$1,000" oninput="onFineInput(this)" placeholder="$1,000"></div>
+      <div class="f1"><label>Maximum incarceration</label><input id="f-jail" value="90" oninput="S.maxJail=this.value" placeholder="90"></div>
+      <div class="f1"><label>Unit</label>
+        <select onchange="S.jailUnit=this.value">
+          <option selected="">days in jail</option>
+          <option>years in prison</option>
+        </select>
+      </div>
+    </div>
+    <div class="notice notice-ok">Auto-filled: Misdemeanor — $1,000 max fine / 90 days in jail</div>
+  </div>
+
+  <div class="card">
+    <div class="sec-hdr">Sentencing agreement (paragraph 9)</div>
+    <textarea id="f-sent" rows="4" oninput="S.sentencing=this.value" placeholder="e.g., Plead Guilty to Count 2. 90 days in jail, with 89 days stayed for 2 years to Hennepin County Probation..."></textarea>
+  </div>
+
+  </div>
 
   <div style="text-align:right;padding-bottom:2rem">
     <button class="btn btn-gold" onclick="showPreview()">Preview petition →</button>
@@ -1415,6 +1543,11 @@ function buildMainPV(){
   const p11Std=(!isDwi&&S.enhanceOn)?`<div class="p-para"><span class="p-pn">11.</span><span class="p-pb">${enhCustom?esc(enhCustom).replace(/\n/g,'<br>'):ph('[Type the enhanceability language in the form]')}</span></div>`:'';
   const p11=(isDwi&&S.enhanceOn)?`<div class="p-para"><span class="p-pn">11.</span><span class="p-pb">Further, I also understand <u><strong>THE ENHANCEABILITY</strong></u> of this crime. I understand that any future Driving While Impaired offenses occurring in the next 10 years will be enhanced by this charge I am pleading guilty to today. In other words, any future offenses will carry more severe criminal and civil penalties; that two DWI's within ten years is a gross misdemeanor and carries mandatory minimum jail sentencing; that three DWI's within ten years is also a gross misdemeanor carrying even higher mandatory minimums; that four DWI's within ten years can result in a felony, and punishment may include imprisonment. I also understand that future offenses will include longer license revocation periods, license impoundment and possibly vehicle forfeiture and/or an alcohol restriction on my license.</span></div>`:'';
 
+  /* ── Immigration consequences paragraph — ALWAYS appears in DWI and
+     Standard petitions, numbered after enhanceability when that is on ── */
+  const immigNum=S.enhanceOn?12:11;
+  const pImmig=`<div class="p-para"><span class="p-pn">${immigNum}.</span><span class="p-pb">I understand if I am not a United States Citizen, this plea of guilty may have consequences on my current status in this country, possibly including denial of naturalization of citizenship, denial of a green card, denial of citizenship, and/or deportation. I understand I have the right to consult with an attorney regarding this if I so wish.</span></div>`;
+
   /* ── defendant signature block: sig line + date sig line side-by-side,
      plus optional client street / city-state-zip / phone / email below ── */
   const clientInfoLines=[];
@@ -1521,7 +1654,7 @@ function buildMainPV(){
 
 <div class="p-para"><span class="p-pn">10.</span><span class="p-pb">I understand that if the court does not accept the agreement stated in number 9, I have the right to withdraw my plea of guilty and have a trial.</span></div>
 
-${p11}${p11Std}
+${p11}${p11Std}${pImmig}
 
 ${defSig}
 
@@ -1604,7 +1737,10 @@ function buildTxt(){
   L.push(`9.\tI am entering my plea of guilty based on the following sentencing agreement:`,``,`\t${S.sentencing||'[SENTENCING AGREEMENT]'}`,``);
   L.push(`10.\tI understand that if the court does not accept the agreement stated in number 9, I have the right to withdraw my plea of guilty and have a trial.`);
   if(S.enhanceOn&&S.type!=='dwi')L.push(``,`11.\t${(S.enhanceText||'[Enhanceability language]').trim()}`);
+  const _immigN=S.enhanceOn?12:11;
+  const _immigTxt=`${_immigN}.\tI understand if I am not a United States Citizen, this plea of guilty may have consequences on my current status in this country, possibly including denial of naturalization of citizenship, denial of a green card, denial of citizenship, and/or deportation. I understand I have the right to consult with an attorney regarding this if I so wish.`;
   if(S.enhanceOn&&S.type==='dwi')L.push(``,`11.\tFurther, I also understand THE ENHANCEABILITY of this crime. I understand that any future Driving While Impaired offenses occurring in the next 10 years will be enhanced by this charge I am pleading guilty to today. In other words, any future offenses will carry more severe criminal and civil penalties; that two DWI's within ten years is a gross misdemeanor and carries mandatory minimum jail sentencing; that three DWI's within ten years is also a gross misdemeanor carrying even higher mandatory minimums; that four DWI's within ten years can result in a felony, and punishment may include imprisonment. I also understand that future offenses will include longer license revocation periods, license impoundment and possibly vehicle forfeiture and/or an alcohol restriction on my license.`);
+  L.push(``,_immigTxt);
   if(isDwi)L.push(``,`____________________________`,`Defendant`,``,`____________________________`,`Date`);
   else L.push(``,`____________________________\t\t\t\t____________________________`,`Defendant\t\t\t\t\t\tDate`);
   L.push(``,`${attyName()} states that they are the attorney for the defendant in the above criminal case; and that they have: 1) personally explained the contents of this petition to the defendant, 2) that to the best of their knowledge the defendant's constitutional rights have not been violated and no meritorious defense exists to the charges to which defendant is pleading guilty`,``);
@@ -1793,7 +1929,7 @@ async function pushDrive(){
     const r=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:1000,
+        model:'claude-sonnet-4-6',max_tokens:1000,
         mcp_servers:[{type:'url',url:'https://drivemcp.googleapis.com/mcp/v1',name:'google-drive'}],
         messages:[{role:'user',content:`Create a new Google Doc titled "${title}" with this exact text:\n\n${txt}\n\nReturn only the document URL.`}]
       })
@@ -1865,15 +2001,17 @@ async function onPdfSelected(){
       method:'POST',
       headers:aiHeaders(),
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:50,
+        model:'claude-sonnet-4-6',max_tokens:50,
         messages:[{role:'user',content:[
           {type:'document',source:{type:'base64',media_type:'application/pdf',data:_pdfB64}},
           {type:'text',text:'How many criminal counts/charges are listed in this complaint or citation? Respond with ONLY raw JSON, no fences: {"countTotal": N}'}
         ]}]
       })
     });
-    const data=await resp.json();
-    if(data.error)throw new Error(data.error.message||data.error.type);
+    const raw=await resp.text();
+    let data;
+    try{data=JSON.parse(raw)}catch(_){throw new Error(`HTTP ${resp.status}: ${raw.slice(0,200)}`)}
+    if(data.error)throw new Error((data.error.message||data.error.type)+(data.error.type?` [${data.error.type}]`:''));
     const txt=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
     const m=txt.match(/\{[^}]*\}/);
     const n=m?(JSON.parse(m[0]).countTotal|0):0;
@@ -1887,8 +2025,10 @@ async function onPdfSelected(){
     console.error('Count detection failed:',e);
     if((e.message||'').includes('Failed to fetch')&&!getApiKey()&&!PROXY_URL){
       st.innerHTML='<span style="color:#b91c1c">Connection blocked — add your API key under "⚙ API key settings" below.</span>';
+    }else if((e.message||'').includes('Failed to fetch')){
+      st.innerHTML='<span style="color:#b91c1c">Connection failed — the AI proxy could not be reached. Check the Worker URL.</span>';
     }else{
-      st.innerHTML='<span style="color:#b45309">Could not pre-count the counts — set the number manually. Auto-fill will still work.</span>';
+      st.innerHTML=`<span style="color:#b45309">Pre-count failed: ${esc(e.message||'unknown error')}</span>`;
     }
   }
 }
@@ -1929,7 +2069,7 @@ async function autoFillFromPdf(){
 ${pleaIn?`THE DEFENDANT IS PLEADING TO: "${pleaIn}". Use this to populate pleaCounts (the count numbers being pled to) and amendedCount if an amended charge is described (e.g. "Amended Count 3 - Careless" means count 3 is amended to Careless Driving).`:''}
 ${dealIn?`THE PLEA DEAL (attorney shorthand): "${dealIn}". Expand this into formal sentencing-agreement language in the style used in Minnesota plea petitions. Example style: "Plead Guilty to Amended Count 3. Dismiss remaining. Stay of Imposition for 1 year to Dakota County Community Corrections. Credit for 1 day previously served. Pay a fine of $600 plus fees and surcharge. Complete a Chemical Use Assessment and follow all recommendations. Complete a Victim Impact Panel. No same or similar offenses. Remain law abiding." Expand all abbreviations (SOI = Stay of Imposition, SOA = Stay of Adjudication, CUA = Chemical Use Assessment, VIP = Victim Impact Panel, comm corr = Community Corrections, ct = Count). Put it in the sentencingAgreement field.`:''}
 
-For the "facts" field: write a first-person factual basis, as if the defendant is admitting to the conduct. Tailor it to the count being PLED TO (if a plea count was specified above, use that count's statute; otherwise use the primary DWI count). ALWAYS begin with how and why law enforcement stopped, approached, or contacted the defendant, using the actual circumstances in the complaint — e.g. stopped for speeding or a lane violation, contacted after a motor vehicle accident (briefly describe the accident), approached while stuck in a ditch or snowbank, contacted in a parking lot after a citizen report, found parked or asleep in the vehicle, etc. Keep the rest simple — follow these templates closely:
+For the "facts" field: write a first-person factual basis, as if the defendant is admitting to the conduct. Tailor it to the count being PLED TO (if a plea count was specified above, use that count's statute; otherwise use the primary DWI count). ALWAYS open with the date, city, and county of the offense when available, in this exact pattern: "On or about [Month Day, Year], in the city of [City], [County] County, Minnesota: " (use "in the township of" if the complaint says township; omit any piece genuinely not in the complaint). Then continue with how and why law enforcement stopped, approached, or contacted the defendant, using the actual circumstances in the complaint — e.g. stopped for speeding or a lane violation, contacted after a motor vehicle accident (briefly describe the accident), approached while stuck in a ditch or snowbank, contacted in a parking lot after a citizen report, found parked or asleep in the vehicle, etc. Keep the rest simple — follow these templates closely:
 
 If pleading to a .08 BAC count (169A.20 subd. 1(5)): "I was driving a motor vehicle when I was [stopped/approached/contacted by law enforcement — actual reason and circumstances from the complaint, including accident details if any]. Prior to driving, I had consumed alcohol. While speaking with the officer, he noticed signs that I may be impaired. I was then asked to step out of the vehicle to perform a series of field sobriety tests. I performed poorly on those tests and was subsequently arrested on suspicion of driving while impaired. While at the station, I was read the Minnesota Breath Test Advisory and declined to speak to an attorney. I then submitted a breath sample that showed my blood alcohol concentration to be .08 or more. I submitted the sample within 2 hours of driving."
 
@@ -1966,7 +2106,7 @@ pleaCounts is an array of count numbers (integers) being pled to; empty array if
       method:'POST',
       headers:aiHeaders(),
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:4000,
+        model:'claude-sonnet-4-6',max_tokens:4000,
         messages:[{role:'user',content:[
           {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
           {type:'text',text:prompt}
@@ -2154,5 +2294,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(k){const e=$('ai-key');if(e)e.value=k}
 });
 </script>
-</body>
-</html>
+
+
+</body></html>
